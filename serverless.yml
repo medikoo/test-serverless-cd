@@ -1,0 +1,35 @@
+service: test-dashboard-cd
+
+tenant: medikoo2
+app: test
+
+outputs:
+  my-key: my-value
+  test.dotted: foo
+  marko:
+    fabio: elo
+    miszko: gazo
+  my-availability-zones:
+    - us-east-1a
+    - us-east-1b
+  array-in-array:
+    - - foo
+      - bar
+    - us-east-1b
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  stage: external-aws
+  versionFunctions: false
+
+package:
+  individually: true
+
+functions:
+  function:
+    handler: index.handler
+
+plugins:
+  - serverless-plugin-reducer
